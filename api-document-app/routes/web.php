@@ -25,6 +25,9 @@ Route::resource('reset-password',ResetPasswordController::class);
 |
 */
 
+Route::get('/changeNewPassword', function () {
+    return view('change-new-password');
+});
 
 Route::group(['middleware' => 'guest'],function(){
 
