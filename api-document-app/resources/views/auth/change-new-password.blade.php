@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <title>Reset account password</title>
+        <title>Reset Password</title>
         <style>
             *{
                 font-family: "Roboto", sans-serif;
@@ -308,7 +308,7 @@
                 <div class="col d-flex flex-column align-items-center">
                     <form action="{{ route('login') }}" method="POST" class="body d-flex flex-column justify-center align-items-center needs-validation" style="width: 310px; margin-top: 20%;" novalidate>
                         @csrf
-                        <label for="" class="mb-4" style="font-size: 32px;">Sign in your account</label>
+                        <label for="" class="mb-4" style="font-size: 32px;">Reset account password</label>
                         <div class="input-group mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon me-2 mt-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
                             <input class="textfield form-control" style="padding-left: 40px; height: 45px; width: 100%; border-radius: 5px;" type="email" name="email" id="email"  placeholder="Enter your email" required>
