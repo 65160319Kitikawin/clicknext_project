@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        /* .container{
+            background-color: aqua;
+        }
+        [class*="row"]{
+            background-color: rgb(151, 156, 129);
+        }
+        [class*="col"]{
+            background-color: rgb(229, 161, 225);
+        } */
+        /* .main{
+            background-color: orange;
+        } */
+        *{
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .primary {
+            background-color: #EF5B25;
+            color: #fff;
+        }
+        .secondary {
+            background-color: #F2F2F2;
+            color: black;
+        }
+        .debug {
+            border: 1px solid red;
+        }
+        .btn-menu {
+            color: #fff;
+            width: 70px;
+            height: 70px;
+            background-color: transparent;
+            list-style: none;
+            justify-content: center;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .btn-menu:hover{
+            background-color: #ea9c80;
+            width: 70px;
+            height: 70px;
+            color: #fff;
+        }
+        .dropdown{
+            color: #000;
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown:focus .dropdown-content {
+            display: block;
+        }
+
+        .navbar {
+            border-bottom: #F2F2F2 solid 1px;
+        }
+
+        tr {
+            border-top: #F2F2F2 solid 1px;
+        }
+
+        i.fa {
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            color: #808080;
+            font-size: 16px;
+            z-index: 9999;
+        }
+        .form-control {
+            position: relative;
+            padding-left: 30px !important;
+        }
+        .pain {
+
+        }
+        .textfield {
+            width: auto;
+            height: 30px;
+            border: 1px solid #F2F2F2;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 1px;
+        }
+
+       
+
+    </style>
+</head>
+<body class="d-flex flex-row">
+     <!-- Start Sidebar -->
+     <aside class="d-flex flex-shrink-0 flex-column primary debug" style="max-height: 100; width:5.625rem ;height: 100vh ;">
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+            <a href="#" class="mt-2 link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                <img width="50px" src="https://media.discordapp.net/attachments/994685233087643719/1215261876972429323/circle_logo.png?ex=65fc1bd1&is=65e9a6d1&hm=2ca5c2f0daef63d683772b7d936e3398948ccc82dff64fe57dcca0eedd499900&=&format=webp&quality=lossless" alt="clicknext-logo">
+            </a>
+            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">folder</span>
+                    <label class="fw-normal" for="">Collections</label>
+                </li>
+            </a>
+            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">manage_history</span>
+                    <label class="fw-normal" for="">History</label>
+                </li>
+            </a>
+            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">delete</span>
+                    <label class="fw-normal" for="">Trash</label>
+                </li>
+            </a>
+        </ul>
+    </aside>
+    <!-- End Sidebar -->
+    <!-- Start Main -->
+    <div class="d-flex flex-column container-fluid main p-0">
+        <!-- Start Navbar -->
+        <nav class="ps-2 d-flex navbar navbar-light bg-white">
+            <div class="dropdown">
+                <button class="btn dropdown d-flex align-items-center nav-link">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <span class="fs-5 fw-normal">Workspaces</span>
+                    <span class="material-icons">expand_more</span>
+                </button>
+                <div class="dropdown-content container pane debug" style="width: 400px; height: 210px;">
+                    <div class="row">
+                        <div class="col-7 d-flex align-items-center debug" style="height: 35px;">
+                            <div class="input-group">
+                                <i class="fa fa-search"></i>
+                                <input class="form-control textfield" type="search" name="" id=""  placeholder="Search workspaces">
+                            </div>
+                        </div>
+                        <div class="col-5 d-flex align-items-center debug" style="height: 35px;">
+                            <button class="m-auto" >Create Workspace</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="dropdown d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle pe-5 fs-5 fw-normal" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="50" height="50" class="rounded-circle me-2">
+                Sweed
+            </a>
+        </nav>
+        <!-- End Navbar -->
+        <!-- Start Content -->
+
+        <section class="content">
+              <!-- side bar person icon with workspace -->
+            <div class="container-fluid">
+              <div class="row">  
+               <div class="col-2 debug d-flex align-items-center border">
+                   <span class="material-symbols-outlined"> person </span> 
+                   <p class="mt-3 ms-2">My Workspaces</p>
+               </div>
+                 <!-- main bar with plus icon -->
+               <div class="col-10 primary d-flex align-items-center">
+                <span class="material-symbols-outlined">add</span>
+               </div>
+             </div>
+            </div>
+            
+                  <!-- side bar main content store collections -->
+            <div class="container-fluid">
+                <div class="row " >  
+                 <div class="col-2 border  " style="min-height: 100; height: 100vh; overflow: scroll;" >
+                    <div class="d-flex align-items-center">
+                        <span class="material-symbols-outlined me-2">add</span>
+                        <div class="input-group mt-1"><i class="fa fa-search"></i>
+                            <input class="form-control textfield fs-6" type="search" name="" id=""  placeholder="Search">
+                        </div>
+                    </div>
+
+                <div class="row " >
+
+                <div class="rol d-flex ">
+                    <p>
+                        <div>
+                            <p class="d-flex mt-2 "><span class="material-symbols-outlined " data-bs-toggle="collapse" href="#CollectionContent" role="button" id="expandable" onclick="expandable()">expand_less</span>
+                                New Collection
+                                <span class="material-symbols-outlined  " style="margin-left: 2.9rem;">more_horiz</span>
+                            </p>
+                            </p>
+                            <div class="collapse " id="CollectionContent">
+                              <div class=" row ms-5 ">
+                                <p>aaa .html</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>  
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                                <p>aaa</p>
+                              </div>
+                            </div>
+                        </div>
+                      </div>                
+                    </div>
+                 </div>
+
+                  <!-- content below main bar with plus icon-->
+                  <div class="col-10 ">
+
+                    
+                  </div>
+                </div>
+            </div>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+          </section>
+        <!-- End Content -->
+    </div>
+
+    
+    
+    <!-- End Main -->
+    <script>
+        function expandable() {
+            var x = document.getElementById("expandable");
+          if (x.innerHTML === "expand_less") {
+             x.innerHTML = "expand_more";
+          } else {
+             x.innerHTML = "expand_less";
+          }
+    }
+        
+        </script>
+    
+</body>
+</html>

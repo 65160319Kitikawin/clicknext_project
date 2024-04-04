@@ -8,6 +8,9 @@ class ResetPasswordController extends Controller
 {
     //Create Index
     public function index() {
-        return view('forgot-password');
+
     }
+
+  
+
 }

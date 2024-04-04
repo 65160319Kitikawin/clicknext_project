@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Read JSON File</title>
+</head>
+<body>
+    <h3>
+      fetched data!!
+    </h3> 
+        
+    
+    <script>
+        let fetchedData;
+        function fetchJSONData() {
+            fetch("test.json")
+                .then((res) => res.json())           
+                .then(data => {
+                 fetchedData = data.paths;
+                 console.log('JSON data:', data.paths);
+                       })
+        }
+
+
+
+        document.write(fetchedData)
+
+        fetchJSONData();
+    </script>
+
+    
+
+
+</body>
+</html>

@@ -7,6 +7,7 @@ use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ForgetPasswordController;
 
 
 
@@ -33,7 +34,15 @@ Route::group(['middleware' => 'guest'],function(){
 
     Route::get('/login',[AuthController::class,'login'])->name('login.index');
     Route::post('/login',[AuthController::class,'loginPost'])->name('login');
+
+ 
 });
+   Route::get('/reset-password/{token}',[ForgetPasswordController::class,'ResetPassword'])
+    ->name('reset.password');
+    Route::get('/forget-password',[ForgetPasswordController::class,'ForgetPassword'])->name('ForgetPassword');
+    Route::post('/forget-password',[ForgetPasswordController::class,'ForgetPasswordPost'])->name('ForgetPassword.post');
+    Route::post("/reset-password",[ForgetPasswordController::class,'resetPasswordPost'])
+    ->name('reset.password.post');
 
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/', [HomepageController::class, 'index'])->name('home.index');

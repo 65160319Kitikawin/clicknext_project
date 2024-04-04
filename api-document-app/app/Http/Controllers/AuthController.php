@@ -60,4 +60,6 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
+
+   
 }
