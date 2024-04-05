@@ -87,7 +87,9 @@
                 <form action="/workspace<?php if (isset($selectedWorkspace)) {
                     echo '/' . $selectedWorkspace->id . '/' . 'collections'; } ?>" method="POST">
                     @csrf
-                    <button style="color: white; border: none; background-color: transparent;" type="submit"><span class="material-symbols-outlined">add</span></button>
+                    <button style="color: white; border: none; background-color: transparent; text-decoration: none"
+                    href="" class="d-flex justify-content-center align-items-center p-2 add-nav-items" type="submit">
+                    <span class="material-symbols-outlined">add</span></button>
                 </form>
             </a>
         </ul>
