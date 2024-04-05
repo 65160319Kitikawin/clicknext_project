@@ -85,40 +85,6 @@
                 <span class="material-symbols-outlined">add</span>
             </a>
         </ul>
-        <div class="tab-content">
-            @foreach($collections->reverse() as $index => $collection)
-            <div class="tab-pane" id="collection_{{$collection->id}}">
-                <div class="container-fluid p-3">
-                    <div class="col d-flex flex-row justify-content-between align-items-center p-0 mb-2">
-                        <h5>{{$collection->name}}</h5>
-                        <div class="d-flex">
-                            <div class="d-flex align-items-center justify-content-between me-2" style="width: 110px; height: 30px;">
-                                <button type="button" class="btn btn-secondary d-flex align-items-center" style="width: 80px; height: 100%; border-radius:5px 0px 0px 5px">
-                                    <i class="fa-regular fa-floppy-disk"></i><label for="" class="ms-1 cursor" style="font-size:14px font-weight:600;">Save</label></button>
-                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" style="width:25px; height: 100%; border-radius:0px 5px 5px 0px" data-bs-toggle="dropdown" aria-expanded="false">
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                  <li><a class="dropdown-item" href="#">Save As .json</a></li>
-                                  <li><a class="dropdown-item" href="#">Save As .docx</a></li>
-                                  <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" href="#">Save to Collection</a></li>
-                                </ul>
-                            </div>
-                            <button type="button" class="btn btn-secondary d-flex align-items-center" style="width: 110px; height:30px; border-radius:5px 0px 0px 5px">
-                                <i class="fa-regular fa-comment" style="color: #EF5B25;"></i><label for="" class="ms-1 cursor" style="font-size:14px font-weight:600; color: #EF5B25;">Comment</label>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col d-flex">
-                        <input class="form-control me-2" style="border: #F2F2F2 solid 2px; color:#808080;" type="file" id="formFile">
-                        <button type="button" class="btn btn-blue d-flex align-items-center" style="width: 100px; height: 100%;">
-                            <i class="fa-regular fa-file-lines"></i><label for="" class="ms-1 cursor" style="font-size:14px font-weight:600;">Create</label>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
     </div>
 </section>
 @endsection
