@@ -122,4 +122,16 @@ class WorkspaceController extends Controller
         }
         return redirect()->back();
     }
+
+    public function historyForSavedCollection(Request $request) {
+
+    }
+
+    public function restoreFormHistory(Request $request) {
+
+    }
+
+    public function deleteFormHistory(Request $request) {
+
+    }
 }
