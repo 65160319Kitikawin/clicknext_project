@@ -60,8 +60,26 @@ class WorkspaceController extends Controller
         $data = $request->session()->all();
         $data['workspaces'] = Workspace::get()->all();
         $data['selectedWorkspace'] = $selectedWorkspace;
+        $data['collections'] = Collection::all();
 
         return view('collection', $data);
+    }
+
+    public function createCollection(Request $request) {
+        $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
+        $collection_workwspace_id = Workspace::find($selectedWorkspaceId) ->id;
+
+        echo '$collection_workwspace_id';
+
+        $CollectionModel = new Collection();
+
+        $CollectionModel -> name = 'New Collection';
+        $CollectionModel -> status = 'Activated';
+        $CollectionModel -> workspace_id = $collection_workwspace_id;
+
+        $CollectionModel -> save();
+
+        return redirect()->back();
     }
 
     public function history(Request $request) {
@@ -103,12 +121,12 @@ class WorkspaceController extends Controller
             if (!in_array($id, array_column($collection_tabs, 'id'))) {
                 $collection = Collection::find($id);
                 $collection_tabs[] = $collection;
-            }  
+            }
         } else {
             $collection_tabs = [];
             $collection_tabs[] = $collection;
-        }      
-    
+        }
+
         $request->session()->put('collection_tabs', $collection_tabs);
 
         return redirect()->back();

@@ -43,24 +43,25 @@
             </div>
             <!-- Collections List -->
             @foreach ($selectedWorkspace->collections as $collection)
-            <div class="row">
-                <div class="col p-0">
-                    <button class="btn-collapse dropdown hover-black d-flex align-items-center" style="height: 30px; width: 100%; text-decoration:none;" href="" type="button" data-bs-toggle="collapse" data-bs-target="#collection_{{$collection->id}}" aria-expanded="false" aria-controls="collection_{{$collection->id}}">
-                        <span class="material-symbols-outlined ms-1 me-2">chevron_right</span>
-                        <span class="fs-6" style="font-weight: 500">{{$collection->name}}</span>
-                    </button>
-                    <div class="collapse" id="collection_{{$collection->id}}">
-                        {{-- Method List --}}
-                        @foreach ($collection->methods as $method)
-                        <ul class="navbar-nav">
-                            <li><a href="{{route('add.collection.tabs',['collection' => $collection->id])}}"><label class="me-2" style="font-size: 14px;  font-weight: 500;" for="">{{$method->type}}</label><label for="" style="font-size: 14px; color: #000;">{{$method->path}}</label></a></li>
-                        </ul>
-                        @endforeach
+                @if ($collection->status == "Activated")
+                    <div class="row">
+                        <div class="col p-0">
+                            <button class="btn-collapse dropdown hover-black d-flex align-items-center" style="height: 30px; width: 100%; text-decoration:none;" href="" type="button" data-bs-toggle="collapse" data-bs-target="#collection_{{$collection->id}}" aria-expanded="false" aria-controls="collection_{{$collection->id}}">
+                                <span class="material-symbols-outlined ms-1 me-2">chevron_right</span>
+                                <span class="fs-6" style="font-weight: 500">{{$collection->name}}</span>
+                            </button>
+                            <div class="collapse" id="collection_{{$collection->id}}">
+                                {{-- Method List --}}
+                                @foreach ($collection->methods as $method)
+                                <ul class="navbar-nav">
+                                    <li><a href="{{route('add.collection.tabs',['collection' => $collection->id])}}"><label class="me-2" style="font-size: 14px;  font-weight: 500;" for="">{{$method->type}}</label><label for="" style="font-size: 14px; color: #000;">{{$method->path}}</label></a></li>
+                                </ul>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                @endif
             @endforeach
-
         </div>
     </div>
 
@@ -72,7 +73,7 @@
                 $collection_tabs = session('collection_tabs', []);
             @endphp
             @if(is_array($collection_tabs) && count($collection_tabs) > 0)
-                @foreach($collection_tabs as $collection)
+                @foreach($collections as $collection)
                     <li class="nav-items">
                         <button class="nav-link fst-italic" data-bs-toggle="tab" href="#collection_{{$collection->id}}">{{$collection->name}}
                             <a class="btn d-flex justify-content-center align-items-center p-1" href="{{ route('delete.collection.tabs', ['collection' => $collection->id]) }}">
@@ -83,16 +84,20 @@
                 @endforeach
             @endif
             <a style="text-decoration: none" href="" class="d-flex justify-content-center align-items-center p-2 add-nav-items">
-                <span class="material-symbols-outlined">add</span>
+                <form action="/workspace<?php if (isset($selectedWorkspace)) {
+                    echo '/' . $selectedWorkspace->id . '/' . 'collections'; } ?>" method="POST">
+                    @csrf
+                    <button style="color: white; border: none; background-color: transparent;" type="submit"><span class="material-symbols-outlined">add</span></button>
+                </form>
             </a>
         </ul>
-        {{-- <!-- Tabs Content -->
+
         <div class="tab-content">
-            @foreach($collections->reverse() as $index => $collection)
+            @foreach($collections -> reverse() as $index => $collection)
             <div class="tab-pane" id="collection_{{$collection->id}}">
                 <div class="container-fluid p-3">
                     <div class="col d-flex flex-row justify-content-between align-items-center p-0 mb-2">
-                        <h5>{{$collection->name}}</h5>
+                        <h5>{{$collection -> name}}</h5>
                         <div class="d-flex">
                             <div class="d-flex align-items-center justify-content-between me-2" style="width: 110px; height: 30px;">
                                 <button type="button" class="btn btn-secondary d-flex align-items-center" style="width: 80px; height: 100%; border-radius:5px 0px 0px 5px">
@@ -120,7 +125,7 @@
                 </div>
             </div>
             @endforeach
-        </div> --}}
+        </div>
     </div>
 </section>
 @endsection
