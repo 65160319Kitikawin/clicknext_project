@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Workspace;
 use App\Models\Collection;
 use App\Models\User;
+use App\Models\History;
 use Session;
 
 
@@ -22,8 +23,6 @@ class WorkspaceController extends Controller
 
         return view('workspace', $data);
     }
-
-
 
     public function create() {
         $data['workspaces'] = Workspace::orderBy('id','desc')->paginate(5);
@@ -69,8 +68,6 @@ class WorkspaceController extends Controller
         $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
         $collection_workwspace_id = Workspace::find($selectedWorkspaceId) ->id;
 
-        echo '$collection_workwspace_id';
-
         $CollectionModel = new Collection();
 
         $CollectionModel -> name = 'New Collection';
@@ -82,9 +79,31 @@ class WorkspaceController extends Controller
         return redirect()->back();
     }
 
-    public function history(Request $request) {
+    public function saveCollection(Request $request) {
+        $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
+        $collection_workwspace_id = Workspace::find($selectedWorkspaceId) ->id;
+
+        $selectedCollectionId = $request->session()->get('selected_collection_id');
+        $collection_id = collection::find($selectedCollectionId) ->id;
+
+        $HistoryModel = new History();
+
+        $HistoryModel -> history_id = $selectedCollectionId;
+        $HistoryModel -> name = $collections -> name;
+        $HistoryModel -> status = 'Inactive';
+        $HistoryModel -> workspace_id = $collection_workwspace_id;
+
+        $HistoryModel -> save();
+
+        return redirect()->back();
+    }
+
+    public function history(Request $request, $id) {
         $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
         $selectedWorkspace = Workspace::find($selectedWorkspaceId);
+
+        $data['selectedCollection'] = collection::find($id);
+        session(['selected_collection_id' => $id]);
 
         if (!$selectedWorkspace) {
             return redirect()->route('home.index')->with('error', 'Workspace not found');
@@ -111,8 +130,6 @@ class WorkspaceController extends Controller
 
         return view('trash', $data);
     }
-
-
 
     public function addToCollectionTabs(Request $request, $id) {
         if ($request->session()->has('collection_tabs')) {
