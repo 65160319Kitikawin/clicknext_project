@@ -84,8 +84,7 @@
                 @endforeach
             @endif
             <a style="text-decoration: none" href="" class="d-flex justify-content-center align-items-center p-2 add-nav-items">
-                <form action="/workspace<?php if (isset($selectedWorkspace)) {
-                    echo '/' . $selectedWorkspace->id . '/collections'; } ?>" method="POST">
+                <form action="{{ route('workspace.createCollection', ['workspace' => $selectedWorkspace->id]) }}" method="POST">
                     @csrf
                     <button style="color: white; border: none; background-color: transparent; text-decoration: none"
                     href="" class="d-flex justify-content-center align-items-center p-2 add-nav-items" type="submit">
@@ -101,6 +100,13 @@
                 @csrf
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
+            {{--
+            <form action="{{ route('upload.json', ['workspace' => $selectedWorkspace->id]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="json_file">
+                <button type="submit">Upload</button>
+            </form>
+            --}}
             @foreach($collections -> reverse() as $index => $collection)
             <div class="tab-pane" id="collection_{{$collection->id}}">
                 <div class="container-fluid p-3">

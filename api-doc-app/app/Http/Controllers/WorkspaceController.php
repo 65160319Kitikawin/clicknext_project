@@ -83,19 +83,20 @@ class WorkspaceController extends Controller
         $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
         $selectedWorkspace = Workspace::find($selectedWorkspaceId);
 
-        $HistoryModel = new Audit();
-        $data['audits'] = $HistoryModel -> new_values;
-
         if (!$selectedWorkspace) {
             return redirect()->route('home.index')->with('error', 'Workspace not found');
         }
 
+        $auditModel = new Audit();
+        $audits = $auditModel->where('user_id', $selectedWorkspaceId)->get(); // Assuming 'workspace_id' is the foreign key for workspace in Audit model
 
-        $data = $request->session()->all();
-        $data['workspaces'] = Workspace::get()->all();
-        $data['selectedWorkspace'] = $selectedWorkspace;
+        $data = [
+            'workspaces' => Workspace::all(),
+            'selectedWorkspace' => $selectedWorkspace,
+            'audits' => $audits
+        ];
 
-        return view('history', $data);
+        return view('history', compact('data'), $data);
     }
 
     public function updateHistory(Request $request) {
@@ -150,4 +151,6 @@ class WorkspaceController extends Controller
         }
         return redirect()->back();
     }
+
+
 }

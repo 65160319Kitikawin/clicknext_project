@@ -42,35 +42,27 @@
                 </div>
             </div>
             <!-- Collections List -->
-            @if ($selectedWorkspace->audits)
-    @foreach ($selectedWorkspace->audits as $audit)
-        <div>
-            <!-- Display audit information -->
-            Audit ID: {{ $audit->id }}<br>
-            Event: {{ $audit->event }}<br>
-            User ID: {{ $audit->user_id }}<br>
-            Timestamp: {{ $audit->created_at }}<br>
-
-            <!-- Display old values -->
-            @if (!empty($audit->old_values))
-                <strong>Old Values:</strong><br>
-                @foreach (json_decode($audit->old_values, true) as $key => $value)
-                    {{ $key }}: {{ $value }}<br>
-                @endforeach
-            @endif
-
-            <!-- Display new values -->
-            @if (!empty($audit->new_values))
-                <strong>New Values:</strong><br>
-                @foreach (json_decode($audit->new_values, true) as $key => $value)
-                    {{ $key }}: {{ $value }}<br>
-                @endforeach
-            @endif
-        </div>
-    @endforeach
-@else
-    <div>No audit records found for this workspace.</div>
-@endif
+            @foreach ($data['audits'] as $audit)
+                <div class="row">
+                    <div class="col p-0">
+                        <div>
+                            <!-- Display audit name from new_values -->
+                            @if (!empty($audit->new_values))
+                                @php
+                                    $newValues = json_decode($audit->new_values);
+                                    $name = isset($newValues->name) ? $newValues->name : null;
+                                @endphp
+                                @if ($name)
+                                <button class="btn-collapse dropdown hover-black d-flex align-items-center" style="height: 30px; width: 100%; text-decoration:none;" href="" type="button" data-bs-toggle="collapse">
+                                    <span class="material-symbols-outlined ms-1 me-2">chevron_right</span>
+                                    <span class="fs-6" style="font-weight: 500">{{$name}}</span>
+                                </button>
+                                @endif
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 

@@ -39,8 +39,7 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::delete('/logout',[AuthController::class,'logout'])->name('logout');
 
-    Route::post('/workspace/{workspace}/collections', [WorkspaceController::class, 'createCollection']);
+    Route::post('/workspace/{workspace}/collections', [WorkspaceController::class, 'createCollection'])->name('workspace.createCollection');
     Route::post('/workspace/{workspace}/history', [WorkspaceController::class, 'updateHistory']);
-
-    Route::post('posts/{post}','PostController@show');
+    //Route::post('/workspace/{workspace}/collections', [WorkspaceController::class, 'uploadJson'])->name('upload.json');
 });
