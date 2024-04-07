@@ -85,7 +85,7 @@
             @endif
             <a style="text-decoration: none" href="" class="d-flex justify-content-center align-items-center p-2 add-nav-items">
                 <form action="/workspace<?php if (isset($selectedWorkspace)) {
-                    echo '/' . $selectedWorkspace->id . '/' . 'collections'; } ?>" method="POST">
+                    echo '/' . $selectedWorkspace->id . '/collections'; } ?>" method="POST">
                     @csrf
                     <button style="color: white; border: none; background-color: transparent; text-decoration: none"
                     href="" class="d-flex justify-content-center align-items-center p-2 add-nav-items" type="submit">
@@ -94,7 +94,13 @@
             </a>
         </ul>
 
+        <!-- tab-content -->
         <div class="tab-content">
+            <form action="/workspace<?php if (isset($selectedWorkspace)) {
+                echo '/' . $selectedWorkspace->id . '/history'; } ?>" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
             @foreach($collections -> reverse() as $index => $collection)
             <div class="tab-pane" id="collection_{{$collection->id}}">
                 <div class="container-fluid p-3">

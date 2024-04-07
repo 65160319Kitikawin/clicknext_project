@@ -424,7 +424,7 @@
         <div class="dropdown">
             <input type="checkbox" id="dropdown-nav-toggle" class="dropdown-nav-toggle visually-hidden">
             <button class="btn btn-dropdown btn-white dropdown d-flex align-items-center" style="height: 50px;" onclick="toggleDropdownNav(),toggleCreateWorkspacePane('close')">
-                <span class="material-symbols-outlined">grid_view</span>
+                <span class="material-symbols-outlined me-1">grid_view</span>
                 <span class="fs-5 fw-normal">Workspaces</span>
                 <span id="dropdown-nav-icon" class="material-icons">expand_more</span>
             </button>

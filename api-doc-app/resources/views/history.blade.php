@@ -42,26 +42,35 @@
                 </div>
             </div>
             <!-- Collections List -->
-            @foreach ($selectedWorkspace->collections as $collection)
-                @if ($collection->status == "Inactive")
-                    <div class="row">
-                        <div class="col p-0">
-                            <button class="btn-collapse dropdown hover-black d-flex align-items-center" style="height: 30px; width: 100%; text-decoration:none;" href="" type="button" data-bs-toggle="collapse" data-bs-target="#collection_{{$collection->id}}" aria-expanded="false" aria-controls="collection_{{$collection->id}}">
-                                <span class="material-symbols-outlined ms-1 me-2">chevron_right</span>
-                                <span class="fs-6" style="font-weight: 500">{{$collection->name}}</span>
-                            </button>
-                            <div class="collapse" id="collection_{{$collection->id}}">
-                                {{-- Method List --}}
-                                @foreach ($collection->methods as $method)
-                                <ul class="navbar-nav">
-                                    <li><a href="{{route('add.collection.tabs',['collection' => $collection->id])}}"><label class="me-2" style="font-size: 14px;  font-weight: 500;" for="">{{$method->type}}</label><label for="" style="font-size: 14px; color: #000;">{{$method->path}}</label></a></li>
-                                </ul>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            @endforeach
+            @if ($selectedWorkspace->audits)
+    @foreach ($selectedWorkspace->audits as $audit)
+        <div>
+            <!-- Display audit information -->
+            Audit ID: {{ $audit->id }}<br>
+            Event: {{ $audit->event }}<br>
+            User ID: {{ $audit->user_id }}<br>
+            Timestamp: {{ $audit->created_at }}<br>
+
+            <!-- Display old values -->
+            @if (!empty($audit->old_values))
+                <strong>Old Values:</strong><br>
+                @foreach (json_decode($audit->old_values, true) as $key => $value)
+                    {{ $key }}: {{ $value }}<br>
+                @endforeach
+            @endif
+
+            <!-- Display new values -->
+            @if (!empty($audit->new_values))
+                <strong>New Values:</strong><br>
+                @foreach (json_decode($audit->new_values, true) as $key => $value)
+                    {{ $key }}: {{ $value }}<br>
+                @endforeach
+            @endif
+        </div>
+    @endforeach
+@else
+    <div>No audit records found for this workspace.</div>
+@endif
         </div>
     </div>
 
@@ -84,6 +93,7 @@
                 @endforeach
             @endif
         </ul>
+
         {{-- <!-- Tabs Content -->
         <div class="tab-content">
             @foreach($collections->reverse() as $index => $collection)

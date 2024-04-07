@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Workspace;
 use App\Models\Collection;
+use App\Models\Audit;
 use App\Models\User;
 use Session;
 
@@ -22,8 +23,6 @@ class WorkspaceController extends Controller
 
         return view('workspace', $data);
     }
-
-
 
     public function create() {
         $data['workspaces'] = Workspace::orderBy('id','desc')->paginate(5);
@@ -67,9 +66,7 @@ class WorkspaceController extends Controller
 
     public function createCollection(Request $request) {
         $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
-        $collection_workwspace_id = Workspace::find($selectedWorkspaceId) ->id;
-
-        echo '$collection_workwspace_id';
+        $collection_workwspace_id = Workspace::find($selectedWorkspaceId) -> id;
 
         $CollectionModel = new Collection();
 
@@ -86,15 +83,23 @@ class WorkspaceController extends Controller
         $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
         $selectedWorkspace = Workspace::find($selectedWorkspaceId);
 
+        $HistoryModel = new Audit();
+        $data['audits'] = $HistoryModel -> new_values;
+
         if (!$selectedWorkspace) {
             return redirect()->route('home.index')->with('error', 'Workspace not found');
         }
+
 
         $data = $request->session()->all();
         $data['workspaces'] = Workspace::get()->all();
         $data['selectedWorkspace'] = $selectedWorkspace;
 
         return view('history', $data);
+    }
+
+    public function updateHistory(Request $request) {
+        return redirect()->back();
     }
 
     public function trash(Request $request) {
